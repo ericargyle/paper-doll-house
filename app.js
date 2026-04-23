@@ -20,16 +20,16 @@ const weatherOptions = [
 ];
 
 const pieceCatalog = [
-  { id: 'foundation', label: 'Foundation', kind: 'foundation', w: 700, h: 80, color: '#b79b7a' },
-  { id: 'base', label: 'Base', kind: 'base', w: 620, h: 180, color: '#f3dfc4' },
-  { id: 'brick', label: 'Bricks', kind: 'brick', w: 540, h: 160, color: '#d28a73' },
-  { id: 'truss', label: 'Truss', kind: 'truss', w: 620, h: 140, color: '#e9c785' },
-  { id: 'window1', label: 'Window A', kind: 'window', w: 110, h: 140, color: '#cfefff' },
-  { id: 'window2', label: 'Window B', kind: 'window', w: 150, h: 160, color: '#cfe3ff' },
-  { id: 'door', label: 'Door', kind: 'door', w: 130, h: 190, color: '#8d664e' },
-  { id: 'roof', label: 'Roof', kind: 'roof', w: 760, h: 180, color: '#8f6b4d' },
-  { id: 'chimney', label: 'Chimney', kind: 'chimney', w: 70, h: 180, color: '#c47b68' },
-  { id: 'plant', label: 'Plant', kind: 'plant', w: 120, h: 160, color: '#6aa66f' },
+  { id: 'foundation', label: '', kind: 'foundation', w: 540, h: 54, color: '#ba9b78' },
+  { id: 'base', label: '', kind: 'base', w: 480, h: 132, color: '#e6d2bd' },
+  { id: 'brick', label: '', kind: 'brick', w: 420, h: 112, color: '#b96f5f' },
+  { id: 'truss', label: '', kind: 'truss', w: 500, h: 100, color: '#d9be8a' },
+  { id: 'window1', label: '', kind: 'window', w: 72, h: 96, color: '#cfefff' },
+  { id: 'window2', label: '', kind: 'window', w: 96, h: 116, color: '#cfe3ff' },
+  { id: 'door', label: '', kind: 'door', w: 90, h: 138, color: '#8d664e' },
+  { id: 'roof', label: '', kind: 'roof', w: 620, h: 132, color: '#8f6b4d' },
+  { id: 'chimney', label: '', kind: 'chimney', w: 52, h: 132, color: '#c47b68' },
+  { id: 'plant', label: '', kind: 'plant', w: 84, h: 114, color: '#6aa66f' },
 ];
 
 const state = {
@@ -60,7 +60,7 @@ function createTexture(label, color, kind) {
   t.font = 'bold 34px sans-serif';
   t.textAlign = 'center';
   t.textBaseline = 'middle';
-  t.fillText(label, 128, 128);
+  if (label) t.fillText(label, 128, 128);
   t.filter = 'none';
   if (kind === 'window') {
     t.fillStyle = 'rgba(197, 236, 255, .6)';
@@ -133,7 +133,7 @@ pieceCatalog.forEach((piece, index) => {
   item.className = 'piece';
   item.draggable = true;
   item.dataset.id = piece.id;
-  item.innerHTML = `<img alt="${piece.label}" src="${textures[piece.id].toDataURL()}" /><span>${piece.label}</span>`;
+  item.innerHTML = `<img alt="${piece.id}" src="${textures[piece.id].toDataURL()}" />`;
   item.addEventListener('dragstart', () => {
     state.placing = piece.id;
   });
@@ -158,12 +158,12 @@ function drawSprite(tex, x, y, w, h, rotation = 0, alpha = 1) {
   ctx.translate(x + w / 2, y + h / 2);
   ctx.rotate(rotation);
   ctx.globalAlpha = alpha;
-  ctx.filter = 'blur(1.2px) saturate(1.05)';
+  ctx.filter = 'blur(2px) saturate(1.08)';
   ctx.drawImage(tex, -w / 2, -h / 2, w, h);
   ctx.filter = 'none';
-  ctx.globalAlpha = 0.65;
-  ctx.strokeStyle = 'rgba(255,255,255,.5)';
-  ctx.lineWidth = 4;
+  ctx.globalAlpha = 0.5;
+  ctx.strokeStyle = 'rgba(255,255,255,.38)';
+  ctx.lineWidth = 3;
   ctx.strokeRect(-w / 2 + 3, -h / 2 + 3, w - 6, h - 6);
   ctx.restore();
 }
@@ -211,14 +211,14 @@ function drawScene() {
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, rect.width, rect.height);
 
-  ctx.fillStyle = 'rgba(255,255,255,.25)';
-  ctx.fillRect(0, rect.height * 0.58, rect.width, rect.height * 0.42);
+  ctx.fillStyle = 'rgba(255,255,255,.18)';
+  ctx.fillRect(0, rect.height * 0.56, rect.width, rect.height * 0.44);
 
   drawWeather();
 
   state.pieces.forEach((piece) => {
     const tex = textures[piece.templateId];
-    drawSprite(tex, piece.x, piece.y, piece.w, piece.h, piece.rotation, 1);
+    drawSprite(tex, piece.x, piece.y, piece.w, piece.h, piece.rotation, 0.95);
   });
 
   if (state.placing) {
