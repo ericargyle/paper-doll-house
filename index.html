@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paper Doll House</title>
+    <meta name="description" content="A cozy paper-doll style 2D house editor with fuzzy cutout pieces and layered placement." />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Eric Argyle Consulting</p>
+          <h1>Paper Doll House</h1>
+          <p class="subtitle">Build a layered house scene with fuzzy cutout pieces, weather, and background options.</p>
+        </div>
+        <div class="toolbar">
+          <label>
+            Background
+            <select id="skySelect"></select>
+          </label>
+          <label>
+            Weather
+            <select id="weatherSelect"></select>
+          </label>
+          <button id="clearBtn" class="btn secondary">Clear</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <div class="canvasWrap">
+          <canvas id="stage" width="1200" height="800"></canvas>
+          <div class="hint">Drag pieces onto the scene. They can overlap like paper cutouts.</div>
+        </div>
+
+        <aside class="palette">
+          <h2>Palette</h2>
+          <div id="pieceList" class="pieceList"></div>
+          <div class="tipBox">
+            <strong>Tip</strong>
+            <p>Use the lower-right handles to rotate pieces, and drag existing pieces to reposition them.</p>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">Paper Doll House, © 2026 Eric Argyle Consulting</footer>
+    </main>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
