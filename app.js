@@ -20,16 +20,16 @@ const weatherOptions = [
 ];
 
 const pieceCatalog = [
-  { id: 'foundation', label: '', kind: 'foundation', w: 540, h: 54, color: '#ba9b78' },
-  { id: 'base', label: '', kind: 'base', w: 480, h: 132, color: '#e6d2bd' },
-  { id: 'brick', label: '', kind: 'brick', w: 420, h: 112, color: '#b96f5f' },
-  { id: 'truss', label: '', kind: 'truss', w: 500, h: 100, color: '#d9be8a' },
-  { id: 'window1', label: '', kind: 'window', w: 72, h: 96, color: '#cfefff' },
-  { id: 'window2', label: '', kind: 'window', w: 96, h: 116, color: '#cfe3ff' },
-  { id: 'door', label: '', kind: 'door', w: 90, h: 138, color: '#8d664e' },
-  { id: 'roof', label: '', kind: 'roof', w: 620, h: 132, color: '#8f6b4d' },
-  { id: 'chimney', label: '', kind: 'chimney', w: 52, h: 132, color: '#c47b68' },
-  { id: 'plant', label: '', kind: 'plant', w: 84, h: 114, color: '#6aa66f' },
+  { id: 'foundation', label: '', kind: 'brick', w: 124, h: 82, color: '#ba9b78' },
+  { id: 'base', label: '', kind: 'brick', w: 118, h: 78, color: '#e6d2bd' },
+  { id: 'brick', label: '', kind: 'brick', w: 112, h: 76, color: '#b96f5f' },
+  { id: 'truss', label: '', kind: 'brick', w: 116, h: 74, color: '#d9be8a' },
+  { id: 'window1', label: '', kind: 'window', w: 84, h: 104, color: '#cfefff' },
+  { id: 'window2', label: '', kind: 'window', w: 100, h: 118, color: '#cfe3ff' },
+  { id: 'door', label: '', kind: 'door', w: 88, h: 132, color: '#8d664e' },
+  { id: 'roof', label: '', kind: 'roof', w: 128, h: 82, color: '#8f6b4d' },
+  { id: 'chimney', label: '', kind: 'brick', w: 62, h: 128, color: '#c47b68' },
+  { id: 'plant', label: '', kind: 'plant', w: 86, h: 112, color: '#6aa66f' },
 ];
 
 const state = {
@@ -80,29 +80,29 @@ function createTexture(label, color, kind) {
   if (kind === 'roof') {
     t.fillStyle = 'rgba(92, 62, 42, .95)';
     t.beginPath();
-    t.moveTo(30, 170);
-    t.lineTo(128, 54);
-    t.lineTo(226, 170);
+    t.moveTo(28, 200);
+    t.lineTo(128, 50);
+    t.lineTo(228, 200);
     t.closePath();
     t.fill();
   }
   if (kind === 'door') {
     t.fillStyle = 'rgba(107, 72, 48, .9)';
-    t.fillRect(72, 56, 112, 150);
+    t.fillRect(82, 60, 92, 138);
     t.fillStyle = 'rgba(255,255,255,.3)';
-    t.fillRect(84, 70, 88, 122);
+    t.fillRect(92, 74, 72, 112);
     t.strokeStyle = 'rgba(43,31,20,.9)';
     t.lineWidth = 8;
-    t.strokeRect(72, 56, 112, 150);
+    t.strokeRect(82, 60, 92, 138);
   }
   if (kind === 'plant') {
     t.fillStyle = 'rgba(71, 146, 86, .95)';
     t.beginPath();
-    t.arc(128, 160, 36, 0, Math.PI * 2);
+    t.arc(128, 156, 36, 0, Math.PI * 2);
     t.fill();
     t.fillStyle = 'rgba(255,255,255,.45)';
     t.beginPath();
-    t.arc(92, 110, 28, 0, Math.PI * 2);
+    t.arc(92, 108, 28, 0, Math.PI * 2);
     t.arc(160, 104, 32, 0, Math.PI * 2);
     t.fill();
   }
